@@ -1,7 +1,7 @@
 
 ## About Task
 
-A simple todo list CRUD application built with laravel API
+A simple todo list CRUD application built with Laravel
 
 No authentication is required to test the endpoints
 

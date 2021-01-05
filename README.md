@@ -8,6 +8,7 @@ No authentication is required to test the endpoints
 ## How to set up
 
 ```sh
+## Minimum Server Requiremnt "php": 7.3,
 1. Clone repository
 2. CD into project and run `composer install` to install dependencies
 3. Create .env file in project rootan, paster example.env content inside .env

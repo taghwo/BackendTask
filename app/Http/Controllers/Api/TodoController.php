@@ -21,7 +21,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = $this->todo->fetchAll();
+        $todos = $this->todo->fetchPaginated();
 
         if ($todos->count() > 0) {
             return $this->respondWithPaginatedData($todos);

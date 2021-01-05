@@ -13,7 +13,7 @@ abstract class RepositoryAbstract
         $this->entity = $this->resolveEntity();
     }
 
-    public function fetchAll($page=10)
+    public function fetchPaginated($page=10)
     {
         return $this->entity->paginate($page);
     }

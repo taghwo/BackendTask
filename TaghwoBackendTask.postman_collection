@@ -1,0 +1,782 @@
+{
+	"info": {
+		"_postman_id": "3aaa86fd-de76-446f-bbbf-fac6071b0614",
+		"name": "BackendTask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Endpoint for creating new todo.\r\n## Authentication : None\r\n> Possible response status code include 201 for success, 422 for validation error, 404 for invalid endpoint and 500 for server error\r\n\r\n> Request Validations\r\n>\r\n         > 'title' => ['required',\"string',max:500'],\r\n         \r\n         > 'detail' => ['nullable','string','max:1000']"
+			},
+			"response": [
+				{
+					"name": "failed validation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titles\":\"Search files all day\",\r\n    \"detail\":\"The deeper we searched, we became tire\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}todos",
+							"host": [
+								"{{baseurl}}todos"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:07:38 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:07:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"title\": [\n            \"The title field is required.\"\n        ]\n    }\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Search files all day\",\r\n    \"detail\":\"The deeper we searched, we became tire\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}todos",
+							"host": [
+								"{{baseurl}}todos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:06:34 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:06:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"title\": \"Search files all day\",\n        \"detail\": \"The deeper we searched, we became tire\",\n        \"updated_at\": \"2021-01-05T21:06:33.000000Z\",\n        \"created_at\": \"2021-01-05T21:06:33.000000Z\",\n        \"id\": 12\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Todo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}todos/{{todo_id}}",
+					"host": [
+						"{{baseurl}}todos"
+					],
+					"path": [
+						"{{todo_id}}"
+					]
+				},
+				"description": "Endpoint for fetching single todo using ID.\r\n## Authentication : None\r\n> Possible response status code include 200 for success, 404 for invalid endpoint, 404 for todo not found and 500 for server error"
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}todos/{{todo_id}}",
+							"host": [
+								"{{baseurl}}todos"
+							],
+							"path": [
+								"{{todo_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:06:40 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:06:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"id\": 12,\n        \"title\": \"Search files all day\",\n        \"detail\": \"The deeper we searched, we became tire\",\n        \"is_complete\": false,\n        \"created_at\": \"2021-01-05T21:06:33.000000Z\",\n        \"updated_at\": \"2021-01-05T21:06:33.000000Z\"\n    }\n}"
+				},
+				{
+					"name": "Todo not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}todos/5555",
+							"host": [
+								"{{baseurl}}todos"
+							],
+							"path": [
+								"5555"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 22:43:13 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 22:43:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"message\": \"No query results for  [Todo] 5555\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Endpoint for fetching paginated list of todos.\r\n## Authentication : None\r\n> Possible response status code include 200 for success, 404 for invalid endpoint and 500 for server error"
+			},
+			"response": [
+				{
+					"name": "Paginated Todos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}todos",
+							"host": [
+								"{{baseurl}}todos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:06:49 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:06:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"current_page\": 1,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"repellat\",\n            \"detail\": \"Rerum sunt omnis voluptatibus. Ut vitae aperiam et explicabo. Rerum qui atque maxime et et quia temporibus. Atque similique consectetur est et fugit. Autem consequuntur eos qui in sit et hic.\",\n            \"is_complete\": true,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:45.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"velit\",\n            \"detail\": \"In enim earum dicta vel saepe ipsa sit. Aut eos quia voluptas sapiente. Nisi quis ea aut deleniti. Doloribus adipisci sapiente sed.\",\n            \"is_complete\": true,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:45.000000Z\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"modi\",\n            \"detail\": \"Reprehenderit consequatur animi sapiente. Repellat ab qui repudiandae. Molestiae nisi nihil deserunt ut quo tenetur itaque.\",\n            \"is_complete\": false,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:45.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"et\",\n            \"detail\": \"Veritatis porro eos consequatur culpa voluptatibus. Nam voluptatum cum praesentium et fugiat assumenda ab veritatis. At et sunt similique dolore.\",\n            \"is_complete\": false,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:45.000000Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"aspernatur\",\n            \"detail\": \"Magnam nulla quod dicta est ut corporis tempore. Dolores in quidem distinctio sunt corporis. Magni voluptate magnam omnis et et cumque.\",\n            \"is_complete\": true,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:46.000000Z\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"vel\",\n            \"detail\": \"In quis voluptatum consequuntur illum pariatur unde alias. Dolorem eius ea placeat illo minus et. Non molestias iure ad dolorum beatae eaque sint. Est soluta mollitia et fugit et aliquid.\",\n            \"is_complete\": true,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:46.000000Z\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"reprehenderit\",\n            \"detail\": \"Explicabo consequuntur voluptatibus aspernatur quisquam ad aliquid. Suscipit explicabo qui incidunt omnis est similique. Doloremque autem consectetur iure voluptatem nisi voluptas assumenda.\",\n            \"is_complete\": false,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:46.000000Z\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"non\",\n            \"detail\": \"Alias sunt et voluptatem. Neque tenetur sed rerum quo quia hic. Minus dolor maxime quasi atque animi quis. Tempora animi rerum soluta possimus atque officia.\",\n            \"is_complete\": true,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:46.000000Z\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"consequatur\",\n            \"detail\": \"Iusto aut odio quod eum. Commodi cum atque soluta eaque numquam modi vel. Sint praesentium occaecati quae vero.\",\n            \"is_complete\": true,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:46.000000Z\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"deserunt\",\n            \"detail\": \"Quam fugit ea mollitia nulla autem nam quia. Iste dicta repellendus placeat id a quasi. Blanditiis rerum commodi at maxime. Officiis quia quam vel esse.\",\n            \"is_complete\": false,\n            \"created_at\": \"2021-01-05T20:57:45.000000Z\",\n            \"updated_at\": \"2021-01-05T20:57:46.000000Z\"\n        }\n    ],\n    \"first_page_url\": \"http://127.0.0.1:8000/api/v1/todos?page=1\",\n    \"from\": 1,\n    \"last_page\": 2,\n    \"last_page_url\": \"http://127.0.0.1:8000/api/v1/todos?page=2\",\n    \"links\": [\n        {\n            \"url\": null,\n            \"label\": \"&laquo; Previous\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://127.0.0.1:8000/api/v1/todos?page=1\",\n            \"label\": 1,\n            \"active\": true\n        },\n        {\n            \"url\": \"http://127.0.0.1:8000/api/v1/todos?page=2\",\n            \"label\": 2,\n            \"active\": false\n        },\n        {\n            \"url\": \"http://127.0.0.1:8000/api/v1/todos?page=2\",\n            \"label\": \"Next &raquo;\",\n            \"active\": false\n        }\n    ],\n    \"next_page_url\": \"http://127.0.0.1:8000/api/v1/todos?page=2\",\n    \"path\": \"http://127.0.0.1:8000/api/v1/todos\",\n    \"per_page\": 10,\n    \"prev_page_url\": null,\n    \"to\": 10,\n    \"total\": 12\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Todo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"New title worked\",\r\n    \"detail\":\"New detail here\",\r\n    \"is_complete\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}todos/{{todo_id}}",
+					"host": [
+						"{{baseurl}}todos"
+					],
+					"path": [
+						"{{todo_id}}"
+					]
+				},
+				"description": "Endpoint for updating a single todo based on ID.\r\n## Authentication : None\r\n> Possible response status code include 200 for success, 422 for validation error, 404 for invalid endpoint, 404 for todo not found and 500 for server error\r\n\r\n> Request Validations\r\n\r\n            > 'title' => ['sometimes','required',\"string',max:500'],\r\n            \r\n            > 'detail' => ['nullable','string','max:1000'],\r\n            \r\n            > 'is_complete' => ['sometimes','required','boolean']\r\n\r\n#Note is_complete only accepts `true or false`"
+			},
+			"response": [
+				{
+					"name": "Validation error due to empty title in request body",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"\",\r\n    \"detail\":\"New detail here\",\r\n    \"is_complete\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}todos/{{todo_id}}",
+							"host": [
+								"{{baseurl}}todos"
+							],
+							"path": [
+								"{{todo_id}}"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:57:09 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:57:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"title\": [\n            \"The title field is required.\"\n        ]\n    }\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"New title worked\",\r\n    \"detail\":\"New detail here\",\r\n    \"is_complete\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}todos/{{todo_id}}",
+							"host": [
+								"{{baseurl}}todos"
+							],
+							"path": [
+								"{{todo_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:56:34 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 21:56:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"id\": 11,\n        \"title\": \"New title worked\",\n        \"detail\": \"New detail here\",\n        \"is_complete\": false,\n        \"created_at\": \"2021-01-05T21:27:47.000000Z\",\n        \"updated_at\": \"2021-01-05T21:56:34.000000Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Todo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}todos/{{todo_id}}",
+					"host": [
+						"{{baseurl}}todos"
+					],
+					"path": [
+						"{{todo_id}}"
+					],
+					"query": [
+						{
+							"key": "accept",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "Endpoint for deleting todo based on ID.\r\n## Authentication : None\r\n> Possible response status code include 200 for success, 404 for invalid endpoint, 404 for todo not found and 500 for server error"
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}todos/6",
+							"host": [
+								"{{baseurl}}todos"
+							],
+							"path": [
+								"6"
+							],
+							"query": [
+								{
+									"key": "accept",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 22:44:24 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 22:44:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Todo, placeat, was deleted\"\n}"
+				},
+				{
+					"name": "Todo not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}todos/766",
+							"host": [
+								"{{baseurl}}todos"
+							],
+							"path": [
+								"766"
+							],
+							"query": [
+								{
+									"key": "accept",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 22:43:50 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 05 Jan 2021 22:43:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.20"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"message\": \"No query results for  [Todo] 766\"\n}"
+				}
+			]
+		}
+	]
+}

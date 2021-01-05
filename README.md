@@ -19,4 +19,4 @@ No authentication is required to test the endpoints
     `php artisan db:seed`
     'php artisan serve`
 ```
-6. Test API with postman (URL should be structure like `localhost:port/api/v1/todos`)
+6. Test API with postman (URL should be structured like `localhost:port/api/v1/todos`)
